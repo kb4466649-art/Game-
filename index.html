@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cyber City</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO -->
+<meta name="description" content="Cyber City - Dystopian Cyberpunk Game">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Orbitron', sans-serif;
+}
+
+body {
+  background: black;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* 🔥 NAVBAR */
+nav {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 40px;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+}
+
+nav h1 {
+  color: #ff0033;
+  text-shadow: 0 0 10px #ff0033;
+}
+
+nav ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+
+nav ul li {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+nav ul li:hover {
+  color: #ff0033;
+}
+
+/* 📱 MOBILE MENU */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* 🎬 HERO */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)),
+              url('character.png') no-repeat center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Neon overlay animation */
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent, black 80%);
+}
+
+/* ⚡ PARTICLES */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.particles span {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: red;
+  animation: float 10s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* 📰 POSTS */
+.posts {
+  padding: 100px 40px;
+  background: #050505;
+}
+
+.posts h2 {
+  margin-bottom: 40px;
+  text-shadow: 0 0 10px red;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: rgba(20,20,20,0.6);
+  border: 1px solid rgba(255,0,50,0.3);
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  transition: 0.4s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px red;
+}
+
+/* 🎮 PLAY BUTTON */
+.play {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.play button {
+  padding: 20px 50px;
+  font-size: 22px;
+  background: #ff0033;
+  border: none;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 20px #ff0033, 0 0 40px #ff0033;
+  transition: 0.3s;
+}
+
+.play button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 40px #ff0033, 0 0 80px #ff0033;
+}
+
+/* 📱 RESPONSIVE */
+@media(max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: black;
+    padding: 20px;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <h1>Cyber City</h1>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <ul id="menu">
+    <li>Home</li>
+    <li>Posts</li>
+    <li>Play</li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="particles" id="particles"></div>
+</section>
+
+<!-- POSTS -->
+<section class="posts">
+  <h2>Latest Updates</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Neon District</h3>
+      <p>Explore the darkest zones of Cyber City.</p>
+    </div>
+
+    <div class="card">
+      <h3>AI Enemies</h3>
+      <p>Face advanced machine intelligence.</p>
+    </div>
+
+    <div class="card">
+      <h3>New Weapons</h3>
+      <p>Upgrade your combat system.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PLAY -->
+<section class="play">
+  <button>PLAY NOW</button>
+</section>
+
+<script>
+// MOBILE MENU
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
+
+// PARTICLES GENERATOR
+const container = document.getElementById("particles");
+
+for (let i = 0; i < 60; i++) {
+  let span = document.createElement("span");
+  span.style.left = Math.random() * 100 + "vw";
+  span.style.animationDuration = (5 + Math.random() * 5) + "s";
+  container.appendChild(span);
+}
+</script>
+
+</body>
+</html>
